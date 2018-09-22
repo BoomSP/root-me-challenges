@@ -1,0 +1,37 @@
+PDF Object
+25 Points
+Hide-and-seek
+
+
+Author
+eilco,  23 July 2017
+
+
+Statement
+
+Find the hidden information in this PDF file.
+Understanding the French language is not needed. 
+
+1. Download the file [ch11.zip]
+2. Unzip it, and get [epreuve_BAC_2004.pdf]
+	
+	$unzip ch11.zip
+
+3. Use tool called [peepdf] to search the object in there
+	
+	$peepdf -i epreuve_BAC_2004.pdf
+
+4. The tool will find suspicious object, just follow it
+
+	>object 1
+	>object 78
+	>object 77
+
+5. Object 77 is the stream file, encode with Flatecode, so use peepdf to extract it
+
+	>object 77 > output.txt
+
+6.  The stream output is encoded with base64, decode it and see unreadable text, with some that readable, containing the clue like [JPEG]
+
+7.  Take the stream only and save it as JPEG file, open the file and you'll get the image containing flag
+
