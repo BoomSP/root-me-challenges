@@ -1,0 +1,28 @@
+
+JSON Web Token(JWT)-Introduction
+20 Points
+Secure Token exchange
+
+Author
+Knowledge,  21 August 2019
+
+Statement
+To validate the challenge, connect as admin.
+
+1. From the challenge's related resource, know that we need to find jwt token and change the algorithm to 'none'
+
+2. Try to log in with random username and password. Look for headers on network tab of Chrome debugger. Not working
+
+3. Click login as guest. Find the jwt token inthe header. We need to change this.
+    As the related resources said, jwt token consists of 3 parts. 
+    Type, Payload, and Signature
+    If we change any type or payload or both, post-modified token's signature will not be the same with the signature calculated at first place
+    -> Know that it's forgery.
+
+4. We need to change the algorithm in type to be 'none'. Do this to disable signature authentication
+    jwt token is encoded with base64. So decode it and change algo to 'none'.
+    Also change the username from 'guest' to 'admin'
+
+5. Combine modified jwt together, and replace it and forward it to the server. Use [Burp Suite]
+    jwt format: base64(type).base64(payload).[no signature here as it's disable]
+
